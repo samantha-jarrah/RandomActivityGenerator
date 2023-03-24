@@ -1,4 +1,14 @@
 import random
+import csv
+
+activities = []
+
+with open("Activity_List.csv", "r") as infile:
+    csvreader = csv.reader(infile)
+    next(csvreader)
+
+    for row in csvreader:
+        activities.append(row)
 
 
 class Activity:
@@ -38,8 +48,8 @@ class ActivityList:
 
 
 test = ActivityList()
-test.add_activity("Horrible Chore", "Do one chore that you have been putting off")
-test.add_activity("Walk", "Goi on a 20 minute walk outside")
-test.add_activity("Read", "Take 15 minutes to read about a new topic")
-test.add_activity("Clean", "Spend 15 minutes cleaning something you regularly ignore")
+
+for i in activities:
+    test.add_activity(i[0], i[1])
+
 test.choose_activity()
